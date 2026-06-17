@@ -53,7 +53,7 @@ This guide provides comprehensive instructions for setting up and using Dolphin 
 Download **`DolphinWinRT_*_x64.msix`** from [Emulators - Dolphin on Emulation Revival Store](https://emulationrevival.github.io/xbox-dev-mode/emulators.html#dolphin) or [SternXD/dolphin releases](https://github.com/SternXD/dolphin/releases). Sideload the **`.msix`** via Device Portal -   current store builds ship a **single** package without a separate dependency step.
 
 :::info
-**Dolphin PC is Recommended:**  Think of the PC version of Dolphin as an extended settings menu for Dolphin UWP.  While not strictly *required*, Dolphin PC is extremely useful (and sometimes necessary) for many features and configurations.  This guide assumes basic familiarity with Dolphin PC. A powerful PC is *not* required for this.
+**Dolphin on PC is Recommended:**  While not required, having Dolphin installed on a PC is very helpful and sometimes necessary for enabling certain features and functionality in Dolphin UWP.  This guide assumes basic familiarity with Dolphin on PC. A powerful PC is *not* required for anything mentioned in this guide.
 :::
 
 ## Initial Setup - USB (Recommended)
@@ -68,22 +68,22 @@ This method uses a USB drive for storing games and Dolphin's user data.
     *   `E:\Games\Nintendo - GameCube`
     *   `E:\Games\Nintendo - Wii`
 
-### Setting the User Folder
+### Setting the User folder
 
-The User Folder is where Dolphin stores important files like:
+The User folder is where Dolphin stores most of its important files, including:
 
-*   Texture Packs
-*   Controller Configurations
-*   AR/Gecko Codes (Cheats)
-*   Box Art
+*   Save data
+*   Controller configurations
+*   AR/Gecko codes (for cheats and patches)
+*   Texture packs
 
-1.  **Create Dolphin Folder:** On your USB drive, create a folder at the *root level* (e.g., `E:\`) named `Dolphin`.
+1.  **Create Dolphin Folder:** On your USB drive, create a folder at the *root level* of (e.g., `E:\`) named `Dolphin`.
 
 2.  **Open Dolphin Settings:** Launch Dolphin UWP and press Select/View to open the settings.
 
-3.  **Set User Folder Path:** Go to "Paths & Folders" > "Add Path" and select the `Dolphin` folder you just created.
+3.  **Set User Folder Path:** Go to "Paths & Folders" > "Add User Folder" and select the `Dolphin` folder you just created.
 
-4.  **Automatic Folder Creation:** The first time you launch a game, Dolphin will automatically create its necessary subfolders (like `Load`, `Config`, `GC`, `Wii`) inside the User Folder you specified.
+4.  **Automatic Folder Creation:** The first time you launch a game, Dolphin will automatically create subfolders inside the User folder you specified.
 
 ## Initial Setup - Internal (Not Recommended)
 
@@ -92,6 +92,10 @@ Using internal storage is *strongly discouraged* due to its limitations (30GB) a
 :::
 
 ### Adding Games
+
+:::warning
+**Under construction:** This section is outdated! At this time we recommend using the Device Portal to upload your ROMs directly into Dolphin UWP's LocalCache folder.
+:::
 
 1.  **Connect via FTP:** Use Durango FTP (see `#app-guides` for instructions) to connect to your Xbox from your PC.
 
@@ -121,9 +125,7 @@ Using internal storage is *strongly discouraged* due to its limitations (30GB) a
 ### Folder Info
 
 *   `LOCALFOLDER`:  Lists all UWP application folders that allow file interaction (e.g., RetroArch, Minecraft).
-*   `D:\`:
-    *   **Retail Mode:**  This is your USB drive.
-    *   **Dev Mode:**  This is where applications are installed (e.g., RetroArch cores).
+*   `D:\`: This is where dev mode applications are installed (e.g., RetroArch cores).
 *   `E:\`: This is your USB drive in Dev Mode.
 
 **See the DurangoFTP Guide in `#app-guides` for detailed file transfer instructions.**
@@ -154,14 +156,13 @@ Netplay allows online multiplayer for GameCube and Wii games with local multipla
 
 ### Requirements
 
-*   **Same Game:** All players must have the *same game* on their game list.
+*   **Same Game:** All players must each have the same game **with matching region, revision, and hashes** on their game list.
 *   **Low Bandwidth:** Bandwidth requirements are low, but latency (ping) is crucial.  Ethernet is recommended over Wi-Fi.
-*   **Identical Game Copies:** Each player needs their own copy of the game, with matching region and revision.  Identical dumps are *strongly recommended*. Most compressed formats work with standard ISOs (except NKit).
 *   **Same Dolphin Version:** All players *must* use the same Dolphin version. Newer versions are better.
 
 ### Starting a Netplay Session
 
-1.  **Open Netplay Menu:** In Dolphin UWP on your Xbox, go to the "Net-play" menu.
+1.  **Open Netplay Menu:** In Dolphin UWP on your Xbox, go to the "Netplay" menu.
 2.  **Host or Join:** Choose "Host" or "Join".
 
 ### Hosting a Netplay Session
@@ -183,19 +184,10 @@ Netplay allows online multiplayer for GameCube and Wii games with local multipla
     *   **IP and Port:** If using Direct Connection, you'll need to share your public IP address and port.
 
 :::note
-**Multiple Routers:**  Can cause complications.  You might need to manually find your public IP.
-:::
-
-:::note
-**Mixed Connection Types:** You can host on the Traversal Server but allow trusted users (e.g., on your LAN) to connect directly using your IP and port.
-:::
-
-:::note
-**Traversal Server Latency:**  The Traversal Server *does not* add latency - it's only for connecting.
-:::
-
-:::note
-**Host Responsibilities:** The host configures the input buffer, enables/disables features, and assigns controllers.
+* **Multiple Routers:**  Can cause complications.  You might need to manually find your public IP.
+* **Mixed Connection Types:** You can host on the Traversal Server but allow trusted users (e.g., on your LAN) to connect directly using your IP and port.
+* **Traversal Server Latency:**  The Traversal Server *does not* add latency - it's only for connecting.
+* **Host Responsibilities:** The host configures the input buffer, enables/disables features, and assigns controllers.
 :::
 
 ### Joining a Netplay Session
@@ -312,9 +304,9 @@ Configuring controls directly on Xbox is currently limited to premade configurat
 
 ## Themes
 
-*Written by Fffathur*
+*Written by fffathur*
 
-*   **Change Theme:** Go to Settings > Interface > Themes and select a theme.
+*   **Change Theme:** Go to Settings > Interface > Themes and select a theme. New themes can be placed in the `/Themes/` directory inside Dolphin UWP's User folder.
 *   **Create Theme:** Create a new folder in `/Themes/` (within your User Folder) and include these *required* files:
     *   `carousel_background_all.png` (Default carousel view)
     *   `menu_background.png` (Settings background)
@@ -327,7 +319,7 @@ Configuring controls directly on Xbox is currently limited to premade configurat
     *   `carousel_background_list.png` (List screen)
     *   `carousel_background_netplay.png` (Netplay screen)
 
-**Note:**  A known glitch might replace the background with box art.  Close and relaunch Dolphin to fix.
+**Note:**  There is a known issue which may replace theme assets with glitched images.  To fix this issue, close and reopen Dolphin.
 
 ## FAQs
 
@@ -351,17 +343,17 @@ Configuring controls directly on Xbox is currently limited to premade configurat
 ### What if my question isn't answered here?
 
 *   Read the instructions carefully.
-*   Ask for help in the [Emulation Collective](https://discord.gg/emulation-collective-1007582798598647889) or [Revives Community Server](https://discord.com/channels/1024833470020722760/1027247947588583514/1284587835571306557) Discord servers.  Be patient and don't spam.
+*   Ask for help in the [Xbox Emulation Hub](discord.gg/7pcAbZzpXj) Discord server.  Be patient and don't spam.
 
 ## Troubleshooting
 
 ### "The folder path you have selected is not writable!" & Black Screen Fix
 
-*Written by GoldenSky#4649*
+*Written by GoldenSky and fffathur*
 
 **Recommended Method (Automated):**
 
-*   Use XboxMediaUSB: [https://github.com/SvenGDK/XboxMediaUSB/releases](https://github.com/SvenGDK/XboxMediaUSB/releases)
+*   Use [Xbox UWP Permission Tool](https://github.com/YTReviveMe/Xbox-UWP-Permission-Tool/releases)
 
 **Manual Method:**
 
@@ -389,7 +381,7 @@ Configuring controls directly on Xbox is currently limited to premade configurat
 
 ### How to Fix Games Not Showing Up
 
-*   **File Format:** Ensure games are *not* zipped or in `nkit.iso` format.  Use RVZ, WBFS, or ISO.
+*   **File Format:** Ensure games are *not* zipped or in `nkit.iso` format.  Use RVZ, WBFS, CISO or ISO.
 *   **USB Fix:** Make sure you've correctly performed the USB fix (T1).
 *   **ROM Integrity:**  Verify that your ROM is working correctly.
 
@@ -412,7 +404,7 @@ The normal Homebrew Channel doesn't boot by default.
 1.  **Download WAD:** Download this WAD file: [https://github.com/FIX94/hbc/releases](https://github.com/FIX94/hbc/releases)
 2.  **Place in Games Folder:** Place the downloaded WAD file in your games folder.
 3.  **Launch WAD:** In Dolphin, select and launch the WAD file.
-4.  **Transfer Apps:** Transfer your PC-generated `WiiSD.raw` file to the `Load` folder in your Dolphin User Folder.  *Some apps requiring custom iOS patches may not work.*
+4.  **Transfer Apps:** Transfer your PC-generated `WiiSD.raw` file to the `Load` folder in your Dolphin User Folder.  *Some apps requiring custom IOS patches may not work.*
 
 ### How to Get the Wii Menu Working
 
@@ -528,8 +520,6 @@ The normal Homebrew Channel doesn't boot by default.
 5.  **Change Disc:** Select "Change Disc", locate your copy of Smash Bros. Brawl, and select it.
 6.  **Load Mod:** Select the mod and load it within the Homebrew environment.
 
-*Note: This guide does not apply to G15.*
-
 ### How to Configure Custom Controls for a Specific Game
 
 *You need a default controller configuration before using this.*  [Example configuration](https://discord.com/channels/1007582798598647889/1057151520237420634/1057151520237420634).
@@ -593,7 +583,7 @@ The normal Homebrew Channel doesn't boot by default.
 **Prerequisites:**
 
 1.  Brawl ISO (or WBFS).
-2.  Dolphin 1.16 installed.
+2.  Dolphin UWP 1.16 or better.
 
 **Setting Up Default ISO:**
 
